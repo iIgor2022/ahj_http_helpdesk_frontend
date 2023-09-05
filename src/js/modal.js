@@ -1,6 +1,6 @@
 export default class Modal {
   constructor(parent, method) {
-    this.parentElement = parent;
+    this.parentElement = document.querySelector(parent);
     this.method = method;
   }
 
@@ -16,7 +16,7 @@ export default class Modal {
 
     if (this.method === "delete") {
       this.modal.classList.add("delete-task");
-    };
+    }
 
     let titleTicket;
 
@@ -42,7 +42,7 @@ export default class Modal {
         <div class="modal-form__header">
           <p>${titleTicket} тикет</p>
         </div>
-        <label class="modal__descriprtion_short">Краткое описание
+        <label class="modal__description_short">Краткое описание
           <input class="edit-input" name="short-description" type="text">
         </label>
         <label class="modal__description_full">Подробное описание
@@ -62,13 +62,16 @@ export default class Modal {
   }
 
   addEvents() {
-    this.modal.addEventListener("click", e => {
+    this.modal.addEventListener("click", (e) => {
       e.preventDefault();
 
-      if (e.target.classList.contains("modal") || e.target.closest(".cancel-button")) {
+      if (
+        e.target.classList.contains("modal") ||
+        e.target.closest(".cancel-button")
+      ) {
         this.removeModal();
       }
-    })
+    });
   }
 
   removeModal() {

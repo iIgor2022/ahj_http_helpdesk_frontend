@@ -1,10 +1,7 @@
-import Controller from './controller';
+import Helpdesk from "./helpdesk";
 
-const controller = new Controller(document.querySelector('.column'));
-controller.init();
+document.addEventListener("DOMContentLoaded", () => {
+  const mainTaskManager = new Helpdesk(".helpdesk", "tickets__container");
 
-document.body.addEventListener('mousedown', controller.onMouseDown);
-document.body.addEventListener('mouseup', controller.onMouseUp);
-document.body.addEventListener('mousemove', controller.onMouseMove);
-
-localStorage.clear();
+  mainTaskManager.init();
+});

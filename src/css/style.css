@@ -176,7 +176,20 @@ input[type='checkbox'] {
   margin: 25px 0;
 }
 
-.modal.delete-task {
+.modal.delete-task >.modal-form > .modal__awarening {
+  display: block;
+}
+
+.modal.delete-task >.modal-form >.modal__description_short {
+  display: none;
+}
+
+.modal.delete-task >.modal-form > .modal__description_full  {
+  display: none;
+}
+
+
+/* .modal.delete-task {
   .modal__description_short,
   .modal__description_full {
     display: none;
@@ -184,7 +197,7 @@ input[type='checkbox'] {
   .modal__awarening {
     display: block;
   }
-}
+} */
 
 .modal-form {
   font-size: 1.4rem;

@@ -40,10 +40,14 @@ export default async function sendToServer(methodToSend, bodyObject) {
 
   const headers = {
     "Content-Type": "application/json",
-  }
+  };
 
   try {
-    const response = await fetch(`http://localhost:7070?method=${postFix}`, { method, body: bodyToSend, headers });
+    const response = await fetch(`http://localhost:7070?method=${postFix}`, {
+      method,
+      body: bodyToSend,
+      headers,
+    });
     const responseJson = await response.json();
     return responseJson;
   } catch (error) {
