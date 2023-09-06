@@ -64,6 +64,11 @@ export default class Helpdesk {
       </div>
     `;
 
+    if (status) {
+      taskItem.querySelector(".ticket-status").classList.add("active");
+      taskItem.querySelector("input[type='checkbox']").checked = true;
+    }
+
     const taskItemCheck = taskItem.querySelector(".ticket-status input");
     taskItemCheck.addEventListener("click", (event) => {
       status = event.target.checked;
@@ -183,7 +188,7 @@ export default class Helpdesk {
       return;
     }
 
-    if (this.method === "getId") {
+    if (this.method === "getDescription") {
       let getDescription;
       try {
         if (
@@ -251,8 +256,12 @@ export default class Helpdesk {
           this.method = "delete";
           this.createModal(item.dataset.id);
         }
-      } else {
+      } else if (e.target.closest(".ticket-status")) {
         this.method = "getId";
+
+        this.collectFullData({ id: item.dataset.id });
+      } else {
+        this.method = "getDescription";
 
         this.collectFullData(
           { id: item.dataset.id },
@@ -269,7 +278,7 @@ export default class Helpdesk {
         this.collectFullData(
           {
             id: item.dataset.id,
-            status: true,
+            status: e.target.checked,
           },
           e.target.closest(".ticket-status"),
         );
