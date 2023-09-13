@@ -241,9 +241,15 @@ export default class Helpdesk {
           this.modal = new Modal("body", "edit").init();
 
           const ticketTitle = item.querySelector(".ticket-content").textContent;
+          const ticketDescription = await sendToServer("getId", {
+            id: item.dataset.id,
+            status: false,
+          });
 
-          this.modal.querySelector(".modal__description_short input").value =
+          this.modal.querySelector("[name='short-description']").value =
             ticketTitle;
+          this.modal.querySelector("[name='long-description']").value =
+            ticketDescription;
           this.method = "getId";
           this.collectFullData({ id: item.dataset.id });
           this.method = "edit";
